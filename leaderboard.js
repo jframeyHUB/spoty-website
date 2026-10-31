@@ -2,7 +2,9 @@
 // Profile photos: drop a file at /assets/people/<id>.jpg and set `photo: true` on that person.
 
 (function () {
-  const FLAGS = { gb: 'United Kingdom', ng: 'Nigeria', sg: 'Singapore', it: 'Italy', es: 'Spain', de: 'Germany', ie: 'Ireland' };
+  const FLAGS = { gb: 'United Kingdom', ng: 'Nigeria', sg: 'Singapore', it: 'Italy', es: 'Spain', de: 'Germany', ie: 'Ireland', in: 'India' };
+  // People with a real (AI-generated) photo in /assets/people/<id>.jpg
+  const PHOTOS = new Set(['mei', 'daniel', 'nina', 'arjun']);
 
   // Illustrated stand-ins until real photos are added.
   // [skin, hairColour, hairStyle, background, shirt]
@@ -30,14 +32,10 @@
     global: {
       label: 'Global', prize: 'The Wolf',
       people: [
-        ['amara', 'Amara Okafor', 'Head of Sales · Fintech', 'ng', 248],
+        ['mei', 'Mei Tan', 'Head of Sales · Fintech', 'sg', 248],
         ['daniel', 'Daniel Hughes', 'Field Sales Manager', 'gb', 231],
-        ['liam', 'Liam Chen', 'Account Executive · SaaS', 'sg', 197],
-        ['sofia', 'Sofia Rossi', 'Medical Device Sales', 'it', 176],
-        ['elena', 'Elena García', 'Enterprise Sales · SaaS', 'es', 162],
-        ['jonas', 'Jonas Weber', 'Industrial Sales', 'de', 151],
-        ['chidi', 'Chidi Eze', 'Telecoms Sales', 'ng', 139],
-        ['grace', 'Grace Okoro', 'SaaS Sales · London', 'gb', 128]
+        ['nina', 'Nina Becker', 'Enterprise Sales · SaaS', 'de', 197],
+        ['arjun', 'Arjun Mehta', 'Regional Sales Director', 'in', 176]
       ]
     },
     national: {
@@ -101,7 +99,7 @@
 
   function makeState(key) {
     const b = BOARDS[key];
-    return { key, label: b.label, prize: b.prize, people: b.people.map(([id, name, role, country, votes]) => ({ id, name, role, country, votes })) };
+    return { key, label: b.label, prize: b.prize, people: b.people.map(([id, name, role, country, votes]) => ({ id, name, role, country, votes, photo: PHOTOS.has(id) })) };
   }
 
   // ---------- Compact race (hero) ----------
@@ -169,7 +167,7 @@
   }
 
   function tick(state, onChange) {
-    const pool = state.people.slice(0, 6);
+    const pool = state.people.slice(0, 4);
     const p = pool[Math.floor(Math.random() * pool.length)];
     p.votes += 1;
     state.lastId = p.id;
@@ -185,7 +183,7 @@
   // Hero
   const heroEl = document.querySelector('[data-board="hero"]');
   const heroState = makeState('global');
-  if (heroEl) renderRace(heroEl, heroState, 5);
+  if (heroEl) renderRace(heroEl, heroState, 4);
 
   // Full section
   const fullEl = document.querySelector('[data-board="full"]');
@@ -202,7 +200,7 @@
   if (!reduceMotion) {
     setInterval(() => {
       if (document.hidden) return;
-      if (heroEl) tick(heroState, () => { flip(heroEl, () => renderRace(heroEl, heroState, 5)); pulse(heroEl, heroState.lastId); });
+      if (heroEl) tick(heroState, () => { flip(heroEl, () => renderRace(heroEl, heroState, 4)); pulse(heroEl, heroState.lastId); });
     }, 3200);
     setInterval(() => {
       if (document.hidden || !fullEl) return;
