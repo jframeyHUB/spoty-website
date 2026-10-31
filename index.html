@@ -54,40 +54,47 @@
           <p class="hero-meta">Voting closes at midnight (UK time) on 31 December 2027</p>
         </div>
 
-        <aside class="preview" aria-label="Leaderboard preview with sample data">
-          <div class="preview-head">
-            <span>Global leaderboard</span>
-            <span class="preview-tag">Preview</span>
+        <aside class="board" aria-label="SPOTY 2027 global leaderboard, sample data">
+          <div class="board-top">
+            <div class="board-titles"><span class="board-kicker">SPOTY 2027</span><span class="board-title">Global leaderboard</span></div>
+            <span class="live"><span class="live-dot" aria-hidden="true"></span>Live</span>
           </div>
-          <ol class="preview-list">
-            <li>
-              <svg class="medal" viewBox="0 0 30 36" role="img" aria-label="1st place, gold"><path d="M9 18 L5 34 L10 31 L13 35 L15 22 Z" fill="#0F2742"/><path d="M21 18 L25 34 L20 31 L17 35 L15 22 Z" fill="#1F66D9"/><circle cx="15" cy="13" r="12" fill="#E2A925"/><circle cx="15" cy="13" r="9" fill="none" stroke="#FFF4D6" stroke-width="1.2"/><text x="15" y="17.4" text-anchor="middle" font-size="12" font-weight="800" fill="#1B1F24" font-family="Arial, sans-serif">1</text></svg>
-              <span class="avatar"><img src="/assets/avatars/amara.svg" alt="" width="44" height="44"><img class="flag" src="/assets/flags/ng.svg" alt="Nigeria" width="18" height="12"></span>
-              <span class="who"><b>Amara O.</b><small>Fintech · Nigeria</small></span><span class="votes">248</span>
-            </li>
-            <li>
-              <svg class="medal" viewBox="0 0 30 36" role="img" aria-label="2nd place, silver"><path d="M9 18 L5 34 L10 31 L13 35 L15 22 Z" fill="#0F2742"/><path d="M21 18 L25 34 L20 31 L17 35 L15 22 Z" fill="#1F66D9"/><circle cx="15" cy="13" r="12" fill="#C3CCD8"/><circle cx="15" cy="13" r="9" fill="none" stroke="#FFFFFF" stroke-width="1.2"/><text x="15" y="17.4" text-anchor="middle" font-size="12" font-weight="800" fill="#1B1F24" font-family="Arial, sans-serif">2</text></svg>
-              <span class="avatar"><img src="/assets/avatars/daniel.svg" alt="" width="44" height="44"><img class="flag" src="/assets/flags/gb.svg" alt="United Kingdom" width="18" height="12"></span>
-              <span class="who"><b>Daniel H.</b><small>Field sales · UK</small></span><span class="votes">231</span>
-            </li>
-            <li>
-              <svg class="medal" viewBox="0 0 30 36" role="img" aria-label="3rd place, bronze"><path d="M9 18 L5 34 L10 31 L13 35 L15 22 Z" fill="#0F2742"/><path d="M21 18 L25 34 L20 31 L17 35 L15 22 Z" fill="#1F66D9"/><circle cx="15" cy="13" r="12" fill="#C98451"/><circle cx="15" cy="13" r="9" fill="none" stroke="#F6D9C2" stroke-width="1.2"/><text x="15" y="17.4" text-anchor="middle" font-size="12" font-weight="800" fill="#1B1F24" font-family="Arial, sans-serif">3</text></svg>
-              <span class="avatar"><img src="/assets/avatars/liam.svg" alt="" width="44" height="44"><img class="flag" src="/assets/flags/sg.svg" alt="Singapore" width="18" height="12"></span>
-              <span class="who"><b>Liam C.</b><small>SaaS · Singapore</small></span><span class="votes">197</span>
-            </li>
-            <li>
-              <span class="rank">4</span>
-              <span class="avatar"><img src="/assets/avatars/sofia.svg" alt="" width="44" height="44"><img class="flag" src="/assets/flags/it.svg" alt="Italy" width="18" height="12"></span>
-              <span class="who"><b>Sofia R.</b><small>Medical · Italy</small></span><span class="votes">176</span>
-            </li>
-          </ol>
-          <div class="preview-you">
-            <span class="rank">?</span>
-            <span class="avatar you" aria-hidden="true">?</span>
-            <span class="who"><b>You</b><small>Where will you rank?</small></span>
-            <span class="votes">?</span>
-          </div>
-          <p class="preview-note">Sample data</p>
+          <div class="board-tabs" aria-hidden="true"><span class="on">Global</span><span>National</span><span>Age band</span></div>
+          <table class="board-table">
+            <thead>
+              <tr><th scope="col" class="c-rank">Rank</th><th scope="col">Salesperson</th><th scope="col" class="c-num">Votes</th><th scope="col" class="c-num c-trend">7 days</th></tr>
+            </thead>
+            <tbody>
+              <tr class="top1">
+                <td class="c-rank"><svg class="medal" viewBox="0 0 30 36" role="img" aria-label="1st, gold"><path d="M9 18 L5 34 L10 31 L13 35 L15 22 Z" fill="#0F2742"/><path d="M21 18 L25 34 L20 31 L17 35 L15 22 Z" fill="#1F66D9"/><circle cx="15" cy="13" r="12" fill="#E2A925"/><circle cx="15" cy="13" r="9" fill="none" stroke="#FFF4D6" stroke-width="1.2"/><text x="15" y="17.4" text-anchor="middle" font-size="12" font-weight="800" fill="#1B1F24" font-family="Arial, sans-serif">1</text></svg></td>
+                <td><div class="person"><span class="avatar"><img src="/assets/avatars/amara.svg" alt="" width="36" height="36"><img class="flag" src="/assets/flags/ng.svg" alt="Nigeria" width="17" height="11"></span><span class="who"><b>Amara Okafor</b><small>Head of Sales · Fintech</small></span></div></td>
+                <td class="c-num">248</td><td class="c-num c-trend up">+18</td>
+              </tr>
+              <tr>
+                <td class="c-rank"><svg class="medal" viewBox="0 0 30 36" role="img" aria-label="2nd, silver"><path d="M9 18 L5 34 L10 31 L13 35 L15 22 Z" fill="#0F2742"/><path d="M21 18 L25 34 L20 31 L17 35 L15 22 Z" fill="#1F66D9"/><circle cx="15" cy="13" r="12" fill="#C3CCD8"/><circle cx="15" cy="13" r="9" fill="none" stroke="#FFFFFF" stroke-width="1.2"/><text x="15" y="17.4" text-anchor="middle" font-size="12" font-weight="800" fill="#1B1F24" font-family="Arial, sans-serif">2</text></svg></td>
+                <td><div class="person"><span class="avatar"><img src="/assets/avatars/daniel.svg" alt="" width="36" height="36"><img class="flag" src="/assets/flags/gb.svg" alt="United Kingdom" width="17" height="11"></span><span class="who"><b>Daniel Hughes</b><small>Field Sales Manager</small></span></div></td>
+                <td class="c-num">231</td><td class="c-num c-trend up">+22</td>
+              </tr>
+              <tr>
+                <td class="c-rank"><svg class="medal" viewBox="0 0 30 36" role="img" aria-label="3rd, bronze"><path d="M9 18 L5 34 L10 31 L13 35 L15 22 Z" fill="#0F2742"/><path d="M21 18 L25 34 L20 31 L17 35 L15 22 Z" fill="#1F66D9"/><circle cx="15" cy="13" r="12" fill="#C98451"/><circle cx="15" cy="13" r="9" fill="none" stroke="#F6D9C2" stroke-width="1.2"/><text x="15" y="17.4" text-anchor="middle" font-size="12" font-weight="800" fill="#1B1F24" font-family="Arial, sans-serif">3</text></svg></td>
+                <td><div class="person"><span class="avatar"><img src="/assets/avatars/liam.svg" alt="" width="36" height="36"><img class="flag" src="/assets/flags/sg.svg" alt="Singapore" width="17" height="11"></span><span class="who"><b>Liam Chen</b><small>Account Executive · SaaS</small></span></div></td>
+                <td class="c-num">197</td><td class="c-num c-trend up">+9</td>
+              </tr>
+              <tr>
+                <td class="c-rank"><span class="rank-num">4</span></td>
+                <td><div class="person"><span class="avatar"><img src="/assets/avatars/sofia.svg" alt="" width="36" height="36"><img class="flag" src="/assets/flags/it.svg" alt="Italy" width="17" height="11"></span><span class="who"><b>Sofia Rossi</b><small>Medical Device Sales</small></span></div></td>
+                <td class="c-num">176</td><td class="c-num c-trend up">+31</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="you-row">
+                <td class="c-rank"><span class="rank-num">?</span></td>
+                <td><div class="person"><span class="avatar you" aria-hidden="true">?</span><span class="who"><b>You</b><small>Your place, once you join</small></span></div></td>
+                <td class="c-num">?</td><td class="c-num c-trend">–</td>
+              </tr>
+            </tfoot>
+          </table>
+          <div class="board-foot"><span>Sample data</span><span>Voting closes 31 Dec 2027</span></div>
         </aside>
       </div>
     </section>
