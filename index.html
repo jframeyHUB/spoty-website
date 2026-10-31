@@ -28,6 +28,7 @@
     <div class="wrap header-inner">
       <a href="/" class="brand" aria-label="SPOTY home"><img src="/assets/spoty-logo-horizontal.svg" alt="SPOTY, Sales Person of the Year" width="190" height="70"></a>
       <nav aria-label="Main" class="nav">
+        <a href="#leaderboard">Leaderboard</a>
         <a href="#how">How it works</a>
         <a href="#awards">Awards</a>
         <a href="#fair">Fair voting</a>
@@ -54,59 +55,25 @@
           <p class="hero-meta">Voting closes at midnight (UK time) on 31 December 2027</p>
         </div>
 
-        <aside class="lb" aria-label="SPOTY 2027 global leaderboard, sample data">
-          <p class="lb-kicker">SPOTY 2027 · Global</p>
-          <h2 class="lb-title">Leaderboard</h2>
+        <aside class="race" data-board="hero" aria-label="SPOTY 2027 global leaderboard, sample data" aria-live="off"></aside>
+      </div>
+    </section>
 
-          <ol class="lb-podium">
-            <li class="p2">
-              <span class="p-rank">2</span>
-              <span class="p-avatar"><img src="/assets/avatars/daniel.svg" alt="" width="64" height="64"><img class="flag" src="/assets/flags/gb.svg" alt="United Kingdom" width="20" height="13"></span>
-              <span class="p-name">Daniel Hughes</span>
-              <span class="p-votes">231</span>
-            </li>
-            <li class="p1">
-              <img class="p-crown" src="/assets/spoty-mark.svg" alt="" width="30" height="36">
-              <span class="p-avatar"><img src="/assets/avatars/amara.svg" alt="" width="84" height="84"><img class="flag" src="/assets/flags/ng.svg" alt="Nigeria" width="24" height="16"></span>
-              <span class="p-name">Amara Okafor</span>
-              <span class="p-votes">248</span>
-            </li>
-            <li class="p3">
-              <span class="p-rank">3</span>
-              <span class="p-avatar"><img src="/assets/avatars/liam.svg" alt="" width="64" height="64"><img class="flag" src="/assets/flags/sg.svg" alt="Singapore" width="20" height="13"></span>
-              <span class="p-name">Liam Chen</span>
-              <span class="p-votes">197</span>
-            </li>
-          </ol>
-
-          <ol class="lb-rows" start="4">
-            <li class="lb-row">
-              <span class="r-rank">4</span>
-              <span class="r-bar">
-                <span class="r-avatar"><img src="/assets/avatars/sofia.svg" alt="" width="40" height="40"><img class="flag" src="/assets/flags/it.svg" alt="Italy" width="16" height="11"></span>
-                <span class="r-name">Sofia Rossi</span>
-                <span class="r-votes">176</span>
-              </span>
-            </li>
-            <li class="lb-row">
-              <span class="r-rank">5</span>
-              <span class="r-bar">
-                <span class="r-avatar"><img src="/assets/avatars/elena.svg" alt="" width="40" height="40"><img class="flag" src="/assets/flags/es.svg" alt="Spain" width="16" height="11"></span>
-                <span class="r-name">Elena García</span>
-                <span class="r-votes">162</span>
-              </span>
-            </li>
-            <li class="lb-row lb-you">
-              <span class="r-rank">?</span>
-              <span class="r-bar">
-                <span class="r-avatar you" aria-hidden="true">?</span>
-                <span class="r-name">You</span>
-                <span class="r-votes">?</span>
-              </span>
-            </li>
-          </ol>
-          <p class="lb-foot">Sample data · Voting closes 31 Dec 2027</p>
-        </aside>
+    <section id="leaderboard" class="section section-tint">
+      <div class="wrap">
+        <div class="fb-head">
+          <div>
+            <p class="eyebrow dark">The 2027 leaderboard</p>
+            <h2>Who's leading right now</h2>
+          </div>
+          <div class="fb-tabs" role="tablist" aria-label="Leaderboard view">
+            <button type="button" role="tab" aria-selected="true" data-board-tab="global">Global</button>
+            <button type="button" role="tab" aria-selected="false" data-board-tab="national">National</button>
+            <button type="button" role="tab" aria-selected="false" data-board-tab="age">Age band</button>
+          </div>
+        </div>
+        <div class="full-board" data-board="full" role="tabpanel" aria-live="off"></div>
+        <p class="fb-note">Sample data. Real rankings appear when SPOTY launches. Voting closes at midnight (UK time) on 31 December 2027.</p>
       </div>
     </section>
 
@@ -256,6 +223,7 @@
     </div>
   </footer>
 
+  <script src="/leaderboard.js" defer></script>
   <script src="/script.js" defer></script>
 </body>
 </html>
