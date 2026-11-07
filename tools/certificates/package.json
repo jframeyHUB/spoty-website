@@ -1,0 +1,6 @@
+{
+  "name": "spoty-certificates",
+  "private": true,
+  "description": "Generates SPOTY certificates, badges and LinkedIn banners",
+  "dependencies": { "@resvg/resvg-js": "2.6.2" }
+}
