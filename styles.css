@@ -184,6 +184,36 @@ p { margin: 0; }
   .fb-you .btn { display: none; }
 }
 
+/* Prizes showcase */
+.prizes { background: radial-gradient(120% 80% at 50% 0%, #17375C 0%, #0F2742 55%, #0A1C30 100%); color: #FFFFFF; }
+.prizes h2 { font-family: var(--display); font-weight: 700; font-size: clamp(34px, 4.4vw, 52px); color: #FFFFFF; letter-spacing: 0; max-width: 18ch; }
+.prizes .body-lg { color: var(--on-navy); }
+.prizes .ticks li { color: var(--on-navy); }
+.prizes .ticks b { color: #FFFFFF; }
+.prizes .ticks li::before { background-color: var(--gold); }
+.prizes .award-kind { background: rgba(201,151,28,0.18); color: var(--gold-light); }
+.prizes-note { margin-top: 18px; font-size: 13px; color: #9FB0C8; }
+.prizes-intro { max-width: 62ch; margin: -20px 0 36px; }
+.prize-hero { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 44px; align-items: center; margin-bottom: 40px; }
+.frame { margin: 0; padding: 18px; background: linear-gradient(135deg, #D9AE45, #9C7316 45%, #E2B95A 70%, #8A6410); border-radius: 3px; box-shadow: 0 2px 0 #2A2F36 inset, 0 30px 60px rgba(15,39,66,0.28), 0 8px 18px rgba(15,39,66,0.18); transform: rotate(-1deg); }
+.frame img { display: block; width: 100%; height: auto; box-shadow: 0 0 0 10px #FFFDF6; }
+.prize-copy { display: flex; flex-direction: column; gap: 14px; }
+.prize-copy h3 { font-family: var(--display); font-size: 30px; font-weight: 700; color: #FFFFFF; }
+.prize-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-bottom: 24px; }
+.prize-share { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 24px; align-items: end; }
+.prize-card { margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.prize-card img { display: block; width: 100%; height: auto; border-radius: 2px; box-shadow: 0 0 0 1px rgba(244,213,138,0.35), 0 16px 34px rgba(0,0,0,0.35); }
+.prize-card figcaption { display: flex; flex-direction: column; gap: 2px; font-size: 15px; }
+.prize-card figcaption b { color: #FFFFFF; font-family: var(--display); font-size: 18px; font-weight: 700; }
+.prize-card figcaption span { color: #C3CCD8; }
+@media (max-width: 900px) {
+  .prize-hero { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .frame { transform: none; padding: 12px; }
+  .prize-grid { grid-template-columns: minmax(0, 1fr); }
+  .prize-share { grid-template-columns: 1fr 1fr; }
+  .prize-wide { grid-column: 1 / -1; }
+}
+
 /* Sections */
 .section { padding: 88px 0; }
 .section-tint { background: var(--tint); }
