@@ -192,6 +192,9 @@ p { margin: 0; }
 .prizes .ticks b { color: #FFFFFF; }
 .prizes .ticks li::before { background-color: var(--gold); }
 .prizes .award-kind { background: rgba(201,151,28,0.18); color: var(--gold-light); }
+.prize-pitch { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin: 8px 0 48px; padding: 26px 0; border-top: 1px solid rgba(244,213,138,0.35); border-bottom: 1px solid rgba(244,213,138,0.35); }
+.prize-pitch p { font-family: var(--display); font-weight: 700; font-size: clamp(24px, 3vw, 34px); line-height: 1.2; color: #FFFFFF; }
+.prize-pitch em { font-style: italic; color: var(--gold-light); }
 .prizes-note { margin-top: 18px; font-size: 13px; color: #9FB0C8; }
 .prizes-intro { max-width: 62ch; margin: -20px 0 36px; }
 .prize-hero { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 44px; align-items: center; margin-bottom: 40px; }
