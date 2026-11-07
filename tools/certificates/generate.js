@@ -48,54 +48,6 @@ function mark(x, y, h, colour, opacity = 1) {
   return `<g transform="translate(${x - 100 * s} ${y}) scale(${s})" opacity="${opacity}">${inner}</g>`;
 }
 
-// ---------- SPOTY insignia: premium shield badge (a sibling of the rosette logo) ----------
-// Laurel leaves are lifted from the rosette so the family resemblance holds.
-const LAUREL = ((MARK.match(/<g fill="#000"><path d="M84\.6[\s\S]*?<\/g>/) || [''])[0])
-  .replace(/<path[^>]*\/>/, '').replace('<g fill="#000">', '').replace('</g>', '');
-const SHIELD = 'M100 6 C128 18 156 24 184 24 C186 40 186 58 186 76 C186 136 152 174 100 196 C48 174 14 136 14 76 C14 58 14 40 16 24 C44 24 72 18 100 6 Z';
-const INNER = 'M100 20 C124 30 148 35 172 36 C173 50 173 63 173 77 C173 128 145 160 100 180 C55 160 27 128 27 77 C27 63 27 50 28 36 C52 35 76 30 100 20 Z';
-const ONE = 'M107 66 L107 120 L117 121.5 L117 126 L83 126 L83 121.5 L93 120 L93 76 L80 82 L79 79.5 Z';
-const STAR = 'M100 34 L104 44.5 L115 45 L106.4 51.8 L109.4 62.5 L100 56.4 L90.6 62.5 L93.6 51.8 L85 45 L96 44.5 Z';
-// Left laurel branch: a curved stem with paired leaves, drawn round (100,100). Mirrored for the right.
-function laurel(fill) {
-  const cx = 100, cy = 100, r = 46, a0 = 112, a1 = 236;
-  const pt = (deg, rad) => [cx + rad * Math.cos(deg * Math.PI / 180), cy + rad * Math.sin(deg * Math.PI / 180)];
-  const [sx, sy] = pt(a0, r), [ex, ey] = pt(a1, r);
-  let out = `<path d="M${sx.toFixed(1)} ${sy.toFixed(1)} A${r} ${r} 0 0 1 ${ex.toFixed(1)} ${ey.toFixed(1)}" fill="none" stroke="${fill}" stroke-width="3.2" stroke-linecap="round"/>`;
-  for (let i = 0; i < 6; i++) {
-    const a = a0 + 10 + i * 20;
-    const tang = a + 90; // direction of travel towards the tip
-    const [ox, oy] = pt(a, r + 7.5), [ix, iy] = pt(a, r - 7.5);
-    out += `<ellipse cx="${ox.toFixed(1)}" cy="${oy.toFixed(1)}" rx="9.5" ry="4" transform="rotate(${(tang - 35).toFixed(0)} ${ox.toFixed(1)} ${oy.toFixed(1)})"/>`;
-    out += `<ellipse cx="${ix.toFixed(1)}" cy="${iy.toFixed(1)}" rx="8.5" ry="3.6" transform="rotate(${(tang + 35).toFixed(0)} ${ix.toFixed(1)} ${iy.toFixed(1)})"/>`;
-  }
-  const [tx, ty] = pt(a1 + 6, r);
-  out += `<ellipse cx="${tx.toFixed(1)}" cy="${ty.toFixed(1)}" rx="9" ry="3.8" transform="rotate(${a1 + 90} ${tx.toFixed(1)} ${ty.toFixed(1)})"/>`;
-  return out;
-}
-
-function insignia(cx, cy, size, variant = 'gold') {
-  const n = ++uid;
-  const gold = variant === 'gold';
-  const face = gold ? ['#F7DD95', '#D9A933', '#A87A0E'] : ['#24507F', '#163A60', '#0B2038'];
-  const glyph = gold ? C.navy : '#E9C25C';
-  const s = size / 200;
-  const leaves = laurel(glyph);
-  return `<g transform="translate(${cx - size / 2} ${cy - size / 2}) scale(${s})">
-<defs>
-<linearGradient id="f${n}" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0" stop-color="${face[0]}"/><stop offset="0.5" stop-color="${face[1]}"/><stop offset="1" stop-color="${face[2]}"/></linearGradient>
-<linearGradient id="r${n}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4D58A"/><stop offset="0.45" stop-color="#C9971C"/><stop offset="1" stop-color="#7A570C"/></linearGradient>
-</defs>
-<path d="${SHIELD}" fill="url(#r${n})"/>
-<path d="${INNER}" fill="url(#f${n})" stroke="${gold ? '#8A6410' : '#E9C25C'}" stroke-width="3"/>
-<path d="M28 36 C52 35 76 30 100 20 C124 30 148 35 172 36 C173 48 173 58 173 66 C125 84 72 60 28 88 Z" fill="#FFFFFF" opacity="${gold ? 0.2 : 0.07}"/>
-<g transform="translate(100 108) scale(0.82) translate(-100 -100)" fill="${glyph}">
-<g>${leaves}</g><g transform="translate(200 0) scale(-1 1)">${leaves}</g>
-<path d="${ONE}"/><path d="${STAR}"/>
-</g>
-</g>`;
-}
-
 const text = (x, y, str, { font = 'Sora', size = 40, weight = 600, style = 'normal', fill = C.ink, anchor = 'middle', spacing = 0 } = {}) =>
   `<text x="${x}" y="${y}" font-family="${font}" font-size="${size}" font-weight="${weight}" font-style="${style}" fill="${fill}" text-anchor="${anchor}"${spacing ? ` letter-spacing="${spacing}"` : ''}>${esc(str)}</text>`;
 
@@ -153,7 +105,7 @@ function badge(o) {
 <rect width="1080" height="1080" fill="${bg}"/>
 <rect x="36" y="36" width="1008" height="1008" fill="none" stroke="${accent}" stroke-width="6"/>
 <rect x="58" y="58" width="964" height="964" fill="none" stroke="${accent}" stroke-width="3" opacity="0.6"/>
-${insignia(540, 345, 440, gold ? 'gold' : 'navy')}
+${mark(540, 120, 420, gold ? C.gold : C.navy)}
 <g stroke="${fg}" stroke-width="2" stroke-linejoin="round">${text(540, 650, 'SPOTY 2027', { font: SERIF, size: 64, weight: 800, fill: fg, spacing: 8 })}</g>
 <g stroke="${gold ? C.goldLight : C.navy}" stroke-width="2.6" stroke-linejoin="round">${text(540, 770, String(o.badgeTitle).toUpperCase(), { font: SERIF, size: fitSize(o.badgeTitle, 96, 900, 0.68), weight: 800, fill: gold ? C.goldLight : C.navy, spacing: 6 })}</g>
 ${text(540, 840, o.badgeLine, { size: 32, fill: sub, spacing: 4 })}
@@ -168,8 +120,8 @@ function banner(o) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 396" width="1584" height="396">
 <rect width="1584" height="396" fill="${C.navy}"/>
 <rect y="0" width="1584" height="8" fill="${C.gold}"/>
-${mark(1300, -150, 760, C.gold, 0.07)}
-${insignia(1404, 202, 280, gold ? 'gold' : 'navy')}
+${mark(1380, -120, 700, C.gold, 0.06)}
+${mark(1420, 48, 300, C.gold)}
 ${text(520, 148, 'SALES PERSON OF THE YEAR 2027', { size: 28, fill: C.goldLight, spacing: 6, anchor: 'start' })}
 <g stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round">${text(518, 240, o.bannerTitle, { font: SERIF, size: fitSize(o.bannerTitle, 80, 760, 0.6), weight: 800, fill: '#FFFFFF', anchor: 'start' })}</g>
 ${text(520, 306, o.bannerLine, { size: 32, fill: '#FFFFFF', anchor: 'start' })}
@@ -247,13 +199,6 @@ const SAMPLES = [
 
 const [arg, out] = process.argv.slice(2);
 if (arg === 'samples') {
-  const dir = path.join(ROOT, 'brand', 'insignia');
-  fs.mkdirSync(dir, { recursive: true });
-  for (const v of ['gold', 'navy']) {
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">${insignia(100, 100, 200, v)}</svg>`;
-    fs.writeFileSync(path.join(dir, `spoty-insignia-${v}.svg`), svg);
-    fs.writeFileSync(path.join(dir, `spoty-insignia-${v}.png`), renderPng(svg, 512).asPng());
-  }
   SAMPLES.forEach((e) => write(path.join(ROOT, 'brand', 'certificates'), e));
 } else if (arg) {
   JSON.parse(fs.readFileSync(arg, 'utf8')).forEach((e) => write(out || '.', e));
