@@ -223,6 +223,14 @@ summary::after { content: "+"; font-weight: 400; font-size: 24px; line-height: 1
 details[open] summary::after { content: "−"; }
 details p { margin-top: 10px; color: var(--muted); }
 
+.contact { background: var(--tint); }
+.contact-inner { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+.contact h2 { margin-bottom: 14px; }
+.contact-mail { justify-self: end; display: inline-flex; align-items: center; gap: 14px; padding: 22px 28px; background: #FFFFFF; border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: 4px; color: var(--navy); text-decoration: none; font-size: 22px; font-weight: 800; }
+.contact-mail svg { width: 28px; height: 28px; color: var(--gold); flex: none; }
+.contact-mail:hover { box-shadow: 0 10px 24px rgba(15,39,66,0.12); }
+@media (max-width: 900px) { .contact-inner { grid-template-columns: minmax(0, 1fr); } .contact-mail { justify-self: start; font-size: 19px; padding: 18px 20px; } }
+
 .cta h2 { margin-bottom: 0; color: #fff; }
 .cta img { width: 56px; }
 
