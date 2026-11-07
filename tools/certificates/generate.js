@@ -3,7 +3,8 @@
 //   node generate.js samples              -> writes sample files to brand/certificates/
 //   node generate.js <input.json> <outDir> -> one certificate set per entry in input.json
 //
-// Input entry: { "type": "gold" | "member", "name", "award", "awardLine", "details",
+// Input entry: { "type": "gold" | "member", "kind": "wolf" | "rising" | "prime" | "veteran" | "president" | "mover" | "member",
+//               "kindArg" (age band, country or "the UK in March 2027"), "name", "award", "details",
 //               "number", "awarded", "verify", "slug" }
 
 const fs = require('fs');
@@ -23,6 +24,18 @@ const C = {
 };
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+// Plain-English explanation of each award, printed on the certificate under the title.
+const EXPLAIN = {
+  wolf: () => 'The highest honour in SPOTY: the salesperson with the most votes in the world.',
+  rising: () => 'Awarded to the salesperson aged 18–24 with the most votes in the world.',
+  prime: (band) => `Awarded to the salesperson aged ${band} with the most votes in the world.`,
+  veteran: () => 'Awarded to the salesperson aged 55 or over with the most votes in the world.',
+  president: (country) => `Awarded to the salesperson with the most votes in ${country}.`,
+  mover: (scope) => `Awarded to the salesperson with the most votes in ${scope}.`,
+  member: () => 'Members are ranked on global, national and age-band leaderboards throughout the year.'
+};
+const ABOUT = 'SPOTY is the global awards for salespeople, decided by votes from the people who have seen them sell.';
 
 let uid = 0;
 // The SPOTY rosette, recoloured and placed. Mask ids are renamed so several copies can share one SVG.
@@ -62,14 +75,15 @@ ${mark(cx, 170, 300, accent)}
 ${text(cx, 560, 'SALES PERSON OF THE YEAR 2027', { size: 44, fill: C.navy, spacing: 14 })}
 ${text(cx, 690, o.heading || (gold ? 'Certificate of Achievement' : 'Certificate of Membership'), { font: SERIF, size: 96, style: 'italic', fill: accentText })}
 ${text(cx, 810, 'This certifies that', { size: 40, fill: C.muted })}
-${text(cx, 1030, o.name, { font: SERIF, size: nameSize, weight: 800, fill: C.navy })}
-<line x1="${cx - 520}" y1="1095" x2="${cx - 40}" y2="1095" stroke="${accent}" stroke-width="4"/>
-<rect x="${cx - 14}" y="1081" width="28" height="28" transform="rotate(45 ${cx} 1095)" fill="${accent}"/>
-<line x1="${cx + 40}" y1="1095" x2="${cx + 520}" y2="1095" stroke="${accent}" stroke-width="4"/>
-${text(cx, 1200, o.lead || (gold ? 'has been named' : 'is a recognised member of'), { size: 40, fill: C.muted })}
-${text(cx, 1370, String(o.award).toUpperCase(), { font: SERIF, size: fitSize(o.award, 150, 2400, 0.7), weight: 800, fill: accentText, spacing: 10 })}
-${text(cx, 1465, o.awardLine, { size: 44, fill: C.navy })}
-${o.details ? text(cx, 1540, o.details, { size: 36, fill: C.muted }) : ''}
+${text(cx, 1000, o.name, { font: SERIF, size: nameSize, weight: 800, fill: C.navy })}
+<line x1="${cx - 520}" y1="1085" x2="${cx - 40}" y2="1085" stroke="${accent}" stroke-width="4"/>
+<rect x="${cx - 14}" y="1071" width="28" height="28" transform="rotate(45 ${cx} 1085)" fill="${accent}"/>
+<line x1="${cx + 40}" y1="1085" x2="${cx + 520}" y2="1085" stroke="${accent}" stroke-width="4"/>
+${text(cx, 1170, o.lead || (gold ? 'has been named' : 'is a recognised member of'), { size: 40, fill: C.muted })}
+${text(cx, 1310, String(o.award).toUpperCase(), { font: SERIF, size: fitSize(o.award, 140, 2050, 0.78), weight: 800, fill: accentText, spacing: 10 })}
+${text(cx, 1392, o.explain || (o.kind ? EXPLAIN[o.kind](o.kindArg) : o.awardLine), { size: 40, fill: C.navy })}
+${text(cx, 1452, o.about || ABOUT, { size: 32, fill: C.muted })}
+${o.details ? text(cx, 1520, o.details, { size: 32, fill: C.muted }) : ''}
 <line x1="300" y1="1800" x2="900" y2="1800" stroke="${C.navy}" stroke-width="3"/>
 ${text(600, 1770, o.signedBy || 'Jack Frame', { font: SERIF, size: 64, style: 'italic', fill: C.navy })}
 ${text(600, 1855, o.signedTitle || 'Founder, SPOTY', { size: 34, fill: C.muted })}
@@ -162,21 +176,21 @@ function write(outDir, entry) {
 const SAMPLES = [
   {
     slug: 'sample-the-wolf', type: 'gold', name: 'Mei Tan', award: 'The Wolf',
-    awardLine: 'Sales Person of the Year 2027 · Most votes in the world',
+    kind: 'wolf',
     details: '1,204 votes · Head of Sales, Fintech · Singapore',
     awarded: 'Awarded January 2028', number: 'SPOTY-2027-W-0001', verify: 'spoty.club/verify/W0001',
     badgeTitle: 'The Wolf', badgeLine: 'SALES PERSON OF THE YEAR', bannerTitle: 'The Wolf · SPOTY 2027', bannerLine: 'Mei Tan · Sales Person of the Year · spoty.club'
   },
   {
     slug: 'sample-president-uk', type: 'gold', name: 'Daniel Hughes', award: 'President · United Kingdom',
-    awardLine: 'Most votes in the United Kingdom · SPOTY 2027',
+    kind: 'president', kindArg: 'the United Kingdom',
     details: '986 votes · Field Sales Manager · Manchester', heading: 'Digital Certificate of Achievement',
     awarded: 'Awarded January 2028', number: 'SPOTY-2027-P-GB-0001', verify: 'spoty.club/verify/PGB0001',
     badgeTitle: 'President', badgeLine: 'UNITED KINGDOM'
   },
   {
     slug: 'sample-member', type: 'member', name: 'Jordan Reyes', award: 'SPOTY 2027',
-    awardLine: 'The global awards for salespeople', lead: 'is a recognised member of',
+    kind: 'member', lead: 'is a recognised member of',
     details: 'Account Executive · Leeds, United Kingdom',
     awarded: 'Member since November 2026', number: 'SPOTY-2027-M-018431', verify: 'spoty.club/verify/M018431',
     badgeTitle: 'Member', badgeLine: 'SALES PERSON OF THE YEAR', bannerTitle: 'Vote for me in SPOTY 2027', bannerLine: 'Jordan Reyes · spoty.club/v/jordan-reyes'

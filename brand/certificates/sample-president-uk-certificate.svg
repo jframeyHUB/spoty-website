@@ -9,14 +9,15 @@
 <text x="1485" y="560" font-family="Sora" font-size="44" font-weight="600" font-style="normal" fill="#0F2742" text-anchor="middle" letter-spacing="14">SALES PERSON OF THE YEAR 2027</text>
 <text x="1485" y="690" font-family="'Bodoni Moda 48pt', 'Bodoni Moda', Didot, serif" font-size="96" font-weight="600" font-style="italic" fill="#8A6410" text-anchor="middle">Digital Certificate of Achievement</text>
 <text x="1485" y="810" font-family="Sora" font-size="40" font-weight="600" font-style="normal" fill="#4A5563" text-anchor="middle">This certifies that</text>
-<text x="1485" y="1030" font-family="'Bodoni Moda 48pt', 'Bodoni Moda', Didot, serif" font-size="200" font-weight="800" font-style="normal" fill="#0F2742" text-anchor="middle">Daniel Hughes</text>
-<line x1="965" y1="1095" x2="1445" y2="1095" stroke="#C9971C" stroke-width="4"/>
-<rect x="1471" y="1081" width="28" height="28" transform="rotate(45 1485 1095)" fill="#C9971C"/>
-<line x1="1525" y1="1095" x2="2005" y2="1095" stroke="#C9971C" stroke-width="4"/>
-<text x="1485" y="1200" font-family="Sora" font-size="40" font-weight="600" font-style="normal" fill="#4A5563" text-anchor="middle">has been named</text>
-<text x="1485" y="1370" font-family="'Bodoni Moda 48pt', 'Bodoni Moda', Didot, serif" font-size="131" font-weight="800" font-style="normal" fill="#8A6410" text-anchor="middle" letter-spacing="10">PRESIDENT · UNITED KINGDOM</text>
-<text x="1485" y="1465" font-family="Sora" font-size="44" font-weight="600" font-style="normal" fill="#0F2742" text-anchor="middle">Most votes in the United Kingdom · SPOTY 2027</text>
-<text x="1485" y="1540" font-family="Sora" font-size="36" font-weight="600" font-style="normal" fill="#4A5563" text-anchor="middle">986 votes · Field Sales Manager · Manchester</text>
+<text x="1485" y="1000" font-family="'Bodoni Moda 48pt', 'Bodoni Moda', Didot, serif" font-size="200" font-weight="800" font-style="normal" fill="#0F2742" text-anchor="middle">Daniel Hughes</text>
+<line x1="965" y1="1085" x2="1445" y2="1085" stroke="#C9971C" stroke-width="4"/>
+<rect x="1471" y="1071" width="28" height="28" transform="rotate(45 1485 1085)" fill="#C9971C"/>
+<line x1="1525" y1="1085" x2="2005" y2="1085" stroke="#C9971C" stroke-width="4"/>
+<text x="1485" y="1170" font-family="Sora" font-size="40" font-weight="600" font-style="normal" fill="#4A5563" text-anchor="middle">has been named</text>
+<text x="1485" y="1310" font-family="'Bodoni Moda 48pt', 'Bodoni Moda', Didot, serif" font-size="101" font-weight="800" font-style="normal" fill="#8A6410" text-anchor="middle" letter-spacing="10">PRESIDENT · UNITED KINGDOM</text>
+<text x="1485" y="1392" font-family="Sora" font-size="40" font-weight="600" font-style="normal" fill="#0F2742" text-anchor="middle">Awarded to the salesperson with the most votes in the United Kingdom.</text>
+<text x="1485" y="1452" font-family="Sora" font-size="32" font-weight="600" font-style="normal" fill="#4A5563" text-anchor="middle">SPOTY is the global awards for salespeople, decided by votes from the people who have seen them sell.</text>
+<text x="1485" y="1520" font-family="Sora" font-size="32" font-weight="600" font-style="normal" fill="#4A5563" text-anchor="middle">986 votes · Field Sales Manager · Manchester</text>
 <line x1="300" y1="1800" x2="900" y2="1800" stroke="#0F2742" stroke-width="3"/>
 <text x="600" y="1770" font-family="'Bodoni Moda 48pt', 'Bodoni Moda', Didot, serif" font-size="64" font-weight="600" font-style="italic" fill="#0F2742" text-anchor="middle">Jack Frame</text>
 <text x="600" y="1855" font-family="Sora" font-size="34" font-weight="600" font-style="normal" fill="#4A5563" text-anchor="middle">Founder, SPOTY</text>
