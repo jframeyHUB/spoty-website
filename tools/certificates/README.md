@@ -12,7 +12,7 @@ Generates the award artwork from templates, using the SPOTY rosette, Bodoni Moda
 | `*-badge.png` | 1080 × 1080 square badge for LinkedIn/Instagram posts |
 | `*-linkedin-banner.png` | 1584 × 396 LinkedIn profile banner (text kept clear of the profile photo) |
 
-Styles: `"type": "gold"` for winners (The Wolf, Rising/Prime/Veteran Closer, President, Mover of the Month) and `"type": "member"` (navy) for every member.
+Styles: `"type": "gold"` for winners (The Wolf, Youngest/Oldest in the World, Prime Closer, President, Mover of the Month) and `"type": "member"` (navy) for every member.
 
 ## Use
 

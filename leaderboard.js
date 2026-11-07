@@ -52,7 +52,7 @@
       ]
     },
     age: {
-      label: 'Ages 25–34', prize: 'Prime Closer · 25–34',
+      label: 'Age 31', prize: 'Prime Closer · Age 31',
       people: [
         ['grace', 'Grace Okoro', 'Age 28 · SaaS Sales', 'gb', 214],
         ['liam', 'Liam Chen', 'Age 31 · Account Executive', 'sg', 197],

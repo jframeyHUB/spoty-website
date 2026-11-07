@@ -3,8 +3,8 @@
 //   node generate.js samples              -> writes sample files to brand/certificates/
 //   node generate.js <input.json> <outDir> -> one certificate set per entry in input.json
 //
-// Input entry: { "type": "gold" | "member", "kind": "wolf" | "rising" | "prime" | "veteran" | "president" | "mover" | "member",
-//               "kindArg" (age band, country or "the UK in March 2027"), "name", "award", "details",
+// Input entry: { "type": "gold" | "member", "kind": "wolf" | "youngest" | "oldest" | "prime" | "president" | "mover" | "member",
+//               "kindArg" (age, country or "the UK in March 2027"), "name", "award", "details",
 //               "number", "awarded", "verify", "slug" }
 
 const fs = require('fs');
@@ -28,12 +28,12 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 // Plain-English explanation of each award, printed on the certificate under the title.
 const EXPLAIN = {
   wolf: () => 'The highest honour in SPOTY: the salesperson with the most votes in the world.',
-  rising: () => 'Awarded to the salesperson aged 18–24 with the most votes in the world.',
-  prime: (band) => `Awarded to the salesperson aged ${band} with the most votes in the world.`,
-  veteran: () => 'Awarded to the salesperson aged 55 or over with the most votes in the world.',
+  youngest: () => 'Awarded to the youngest salesperson competing in SPOTY, anywhere in the world.',
+  prime: (age) => `Awarded to the salesperson aged ${age} with the most votes in the world.`,
+  oldest: () => 'Awarded to the oldest salesperson competing in SPOTY, anywhere in the world.',
   president: (country) => `Awarded to the salesperson with the most votes in ${country}.`,
   mover: (scope) => `Awarded to the salesperson with the most votes in ${scope}.`,
-  member: () => 'Members are ranked on global, national and age-band leaderboards throughout the year.'
+  member: () => 'Members are ranked on global, national and age leaderboards throughout the year.'
 };
 const ABOUT = 'SPOTY is the global awards for salespeople, decided by votes from the people who have seen them sell.';
 

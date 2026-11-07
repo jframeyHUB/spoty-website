@@ -301,3 +301,6 @@ details p { margin-top: 10px; color: var(--muted); }
 .strike { text-decoration: none; position: relative; color: rgba(255,255,255,0.55); }
 .strike::after { content: ""; position: absolute; left: -4%; right: -4%; top: 54%; height: 0.09em; background: var(--gold); transform: rotate(-4deg); border-radius: 2px; }
 .gold-word { color: var(--gold-light); }
+
+.awards-rule { margin-top: 24px; font-size: 15px; color: var(--muted); max-width: 70ch; }
+.awards-rule b { color: var(--ink); }
