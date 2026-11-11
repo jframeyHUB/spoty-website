@@ -24,4 +24,4 @@ Until these are set, the form shows a "email sales@spoty.club" message instead o
 In Vercel → Project → Settings → Environment Variables:
 
 - `RESEND_API_KEY`: API key from resend.com
-- `RESEND_AUDIENCE_ID`: ID of the "SPOTY waitlist" audience in Resend
+- `RESEND_SEGMENT_ID`: ID of the "Waitlist" segment in Resend (older accounts can use `RESEND_AUDIENCE_ID` instead)
