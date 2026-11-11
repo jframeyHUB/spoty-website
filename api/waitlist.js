@@ -3,6 +3,8 @@
 // (RESEND_AUDIENCE_ID still works for accounts on Resend's older Audiences.)
 // Until they're set, it answers with { fallback: true } so the page can show a mailto link.
 
+const { welcomeEmail, notifyEmail, sendEmail } = require('./_lib/email');
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const API = 'https://api.resend.com';
 
@@ -39,7 +41,12 @@ module.exports = async (req, res) => {
     if (segment) {
       // Create the contact straight into the Waitlist segment.
       const created = await call('/contacts', { email, unsubscribed: false, segments: [{ id: segment }] });
-      if (created.ok) return res.status(200).json({ ok: true });
+      if (created.ok) {
+        // New sign-up: welcome them and tell the team. A failed email never blocks the sign-up.
+        const sent = await Promise.allSettled([sendEmail(key, welcomeEmail(email)), sendEmail(key, notifyEmail(email))]);
+        sent.filter((s) => s.status === 'rejected').forEach((s) => console.error('Email error', s.reason));
+        return res.status(200).json({ ok: true });
+      }
       // Already a contact (e.g. signed up before): just make sure they're in the segment.
       const createErr = await created.text();
       const added = await call(`/contacts/${encodeURIComponent(email)}/segments/${encodeURIComponent(segment)}`);
