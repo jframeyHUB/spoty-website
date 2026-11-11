@@ -39,18 +39,32 @@ module.exports = async (req, res) => {
 
   try {
     if (segment) {
-      // Create the contact straight into the Waitlist segment.
-      const created = await call('/contacts', { email, unsubscribed: false, segments: [{ id: segment }] });
-      if (created.ok) {
-        // New sign-up: welcome them and tell the team. A failed email never blocks the sign-up.
-        const sent = await Promise.allSettled([sendEmail(key, welcomeEmail(email)), sendEmail(key, notifyEmail(email))]);
-        sent.filter((s) => s.status === 'rejected').forEach((s) => console.error('Email error', s.reason));
-        return res.status(200).json({ ok: true });
+      // Resend happily "creates" a contact that already exists, so look them up first.
+      const lookup = await fetch(`${API}/contacts/${encodeURIComponent(email)}`, { headers: { Authorization: `Bearer ${key}` } });
+      if (lookup.status === 404) {
+        // New sign-up: create them in the Waitlist segment, welcome them and tell the team.
+        const created = await call('/contacts', { email, unsubscribed: false, segments: [{ id: segment }] });
+        if (created.ok) {
+          const sent = await Promise.allSettled([sendEmail(key, welcomeEmail(email)), sendEmail(key, notifyEmail(email))]);
+          sent.filter((s) => s.status === 'rejected').forEach((s) => console.error('Email error', s.reason));
+          return res.status(200).json({ ok: true });
+        }
+        console.error('Resend create error', created.status, await created.text());
+        return res.status(502).json({ ok: false, error: 'Something went wrong. Please try again.' });
       }
-      // Already a contact (e.g. signed up before): just make sure they're in the segment.
-      const createErr = await created.text();
+      if (!lookup.ok) {
+        console.error('Resend lookup error', lookup.status, await lookup.text());
+        return res.status(502).json({ ok: false, error: 'Something went wrong. Please try again.' });
+      }
+      // Already a contact: make sure they're in the Waitlist segment and subscribed again.
+      const contact = await lookup.json().catch(() => ({}));
+      if (contact.unsubscribed) {
+        await fetch(`${API}/contacts/${encodeURIComponent(email)}`, { method: 'PATCH', headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ unsubscribed: false }) })
+          .catch((e) => console.error('Resubscribe error', e));
+      }
       const added = await call(`/contacts/${encodeURIComponent(email)}/segments/${encodeURIComponent(segment)}`);
-      if (added.ok || added.status === 409) {
+      if (!added.ok) console.error('Resend segment note', added.status, await added.text());
+      {
         // Already signed up: remind them their spot is saved.
         // Our own inbox also gets the welcome email again, so we can preview changes to both.
         const own = email === (process.env.NOTIFY_EMAIL || 'sales@spoty.club');
@@ -59,7 +73,6 @@ module.exports = async (req, res) => {
         sent.filter((s) => s.status === 'rejected').forEach((s) => console.error('Email error', s.reason));
         return res.status(200).json({ ok: true, existing: true });
       }
-      console.error('Resend error', created.status, createErr, added.status, await added.text());
     } else {
       // Older Resend accounts: audiences.
       const r = await call(`/audiences/${encodeURIComponent(audience)}/contacts`, { email, unsubscribed: false });
