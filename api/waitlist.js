@@ -50,7 +50,13 @@ module.exports = async (req, res) => {
       // Already a contact (e.g. signed up before): just make sure they're in the segment.
       const createErr = await created.text();
       const added = await call(`/contacts/${encodeURIComponent(email)}/segments/${encodeURIComponent(segment)}`);
-      if (added.ok || added.status === 409) return res.status(200).json({ ok: true });
+      if (added.ok || added.status === 409) {
+        // Our own inbox gets the welcome email every time, so we can preview changes to it.
+        if (email === (process.env.NOTIFY_EMAIL || 'sales@spoty.club')) {
+          await sendEmail(key, welcomeEmail(email)).catch((e) => console.error('Email error', e));
+        }
+        return res.status(200).json({ ok: true });
+      }
       console.error('Resend error', created.status, createErr, added.status, await added.text());
     } else {
       // Older Resend accounts: audiences.
