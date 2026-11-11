@@ -29,7 +29,9 @@ document.querySelectorAll('[data-waitlist]').forEach((form) => {
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
         form.reset();
-        show("You're on the list. We'll be in touch before launch.", 'ok');
+        show(data.existing
+          ? "You're already on the list. We've emailed you a reminder."
+          : "You're on the list. Check your inbox for your welcome email.", 'ok');
       } else if (data.fallback) {
         show('Sign-ups open very soon. For now, email <a href="mailto:sales@spoty.club?subject=SPOTY%20early%20access">sales@spoty.club</a> and we\'ll add you.', 'err');
       } else {

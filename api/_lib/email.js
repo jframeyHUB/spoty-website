@@ -141,6 +141,65 @@ Unsubscribe: ${unsub}
   };
 }
 
+// ---------- "You're already on the list" (someone signs up again with the same email) ----------
+function alreadyEmail(email) {
+  const unsub = unsubUrl(email);
+  const subject = "You're already on the SPOTY list";
+  const navy = '#0F2742', gold = '#C9971C', goldLight = '#F4D58A', ink = '#1B1F24', muted = '#4A5563', line = '#E2E5E9';
+  const serif = "Georgia, 'Times New Roman', serif";
+  const sans = "-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+  const html = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light"><title>${esc(subject)}</title></head>
+<body style="margin:0;padding:0;background:#F3F4F6;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">Good news: your spot is saved. Nothing else to do.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F3F4F6;"><tr><td align="center" style="padding:24px 12px;">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background:#FFFFFF;border-radius:12px;overflow:hidden;">
+  <tr><td style="background:${navy};border-top:4px solid ${gold};padding:32px 36px 34px 36px;">
+    <img src="${SITE}/assets/email/spoty-logo.png" width="200" alt="SPOTY, Sales Person of the Year" style="display:block;width:200px;height:auto;border:0;">
+    <p style="margin:30px 0 8px 0;font-family:${sans};font-size:12px;letter-spacing:2px;font-weight:700;color:${goldLight};text-transform:uppercase;">Welcome back</p>
+    <h1 style="margin:0;font-family:${sans};font-size:30px;line-height:36px;font-weight:800;color:#FFFFFF;">You're already on the list.</h1>
+    <p style="margin:14px 0 0 0;font-family:${sans};font-size:16px;line-height:24px;color:#DCE4EF;">Someone (hopefully you) just tried to join SPOTY with ${esc(email)}. Your spot is already saved, so there's nothing else to do.</p>
+  </td></tr>
+  <tr><td style="padding:30px 36px 8px 36px;font-family:${sans};font-size:15px;line-height:22px;color:${muted};">
+    <h2 style="margin:0 0 10px 0;font-family:${serif};font-size:22px;font-weight:bold;color:${navy};">What happens now</h2>
+    We'll email you the moment SPOTY launches, before anyone else. You'll create your free profile, get your SPOTY member insignia and personalised LinkedIn banner, and start collecting votes.
+    <p style="margin:12px 0 0 0;">Voting closes at midnight (UK time) on 31 December 2027.</p>
+  </td></tr>
+  <tr><td style="padding:22px 36px 32px 36px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FBF6E8;border:1px solid #EBD9A6;border-radius:10px;"><tr><td style="padding:20px 22px;font-family:${sans};font-size:15px;line-height:22px;color:${ink};">
+      <b>While you wait:</b> tell your network you're going for Sales Person of the Year.
+      <div style="margin-top:14px;">
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.spoty.club" style="display:inline-block;background:${gold};color:${navy};font-family:${sans};font-size:15px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px;margin:0 8px 8px 0;">Share on LinkedIn</a>
+        <a href="${SITE}/assets/share/spoty-linkedin-banner.png" style="display:inline-block;background:#FFFFFF;color:${navy};border:1px solid #D9C48A;font-family:${sans};font-size:15px;font-weight:700;text-decoration:none;padding:11px 20px;border-radius:999px;margin:0 0 8px 0;">Get the banner</a>
+      </div>
+    </td></tr></table>
+  </td></tr>
+  <tr><td style="background:#F8F9FB;border-top:1px solid ${line};padding:22px 36px;font-family:${sans};font-size:12px;line-height:18px;color:#6B7280;">
+    <img src="${SITE}/assets/email/spoty-mark.png" width="28" alt="" style="display:block;width:28px;height:auto;border:0;margin-bottom:10px;">
+    Didn't try to sign up? You can ignore this email. Questions? Reply, or email <a href="mailto:sales@spoty.club" style="color:#6B7280;">sales@spoty.club</a>.<br>
+    <a href="${unsub}" style="color:#6B7280;">Unsubscribe</a> · <a href="${SITE}/privacy" style="color:#6B7280;">Privacy</a>
+  </td></tr>
+</table>
+</td></tr></table>
+</body></html>`;
+  const text = `You're already on the SPOTY list
+
+Someone (hopefully you) just tried to join SPOTY with ${email}. Your spot is already saved, so there's nothing else to do.
+
+We'll email you the moment SPOTY launches. You'll create your free profile, get your SPOTY member insignia and personalised LinkedIn banner, and start collecting votes. Voting closes at midnight (UK time) on 31 December 2027.
+
+Tell your network: https://www.spoty.club
+LinkedIn banner: https://www.spoty.club/assets/share/spoty-linkedin-banner.png
+
+Didn't try to sign up? You can ignore this email.
+Unsubscribe: ${unsub}
+`;
+  return {
+    from: FROM, to: [email], reply_to: REPLY_TO, subject, html, text,
+    headers: { 'List-Unsubscribe': `<${unsub}>, <mailto:sales@spoty.club?subject=unsubscribe>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' }
+  };
+}
+
 // ---------- Notification (to you) ----------
 function notifyEmail(email) {
   const when = new Date().toLocaleString('en-GB', { timeZone: 'Europe/London', dateStyle: 'medium', timeStyle: 'short' });
@@ -164,4 +223,4 @@ async function sendEmail(key, message) {
   return r.json();
 }
 
-module.exports = { welcomeEmail, notifyEmail, sendEmail, unsubUrl, validToken, esc, SITE };
+module.exports = { welcomeEmail, alreadyEmail, notifyEmail, sendEmail, unsubUrl, validToken, esc, SITE };
