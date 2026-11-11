@@ -27,7 +27,7 @@ function validToken(email, token) {
 // ---------- Welcome email (to the person who signed up) ----------
 function welcomeEmail(email) {
   const unsub = unsubUrl(email);
-  const subject = "You're on the list for SPOTY 2027";
+  const subject = "Welcome to SPOTY. You're on the list for 2027";
   const preheader = 'The global awards for salespeople. Here is what happens next.';
   const navy = '#0F2742', gold = '#C9971C', goldLight = '#F4D58A', ink = '#1B1F24', muted = '#4A5563', line = '#E2E5E9';
   const serif = "Georgia, 'Times New Roman', serif";
@@ -55,7 +55,7 @@ function welcomeEmail(email) {
 
   <tr><td style="background:${navy};border-top:4px solid ${gold};padding:32px 36px 36px 36px;">
     <img src="${SITE}/assets/email/spoty-logo.png" width="200" alt="SPOTY, Sales Person of the Year" style="display:block;width:200px;height:auto;border:0;">
-    <p style="margin:30px 0 8px 0;font-family:${sans};font-size:12px;letter-spacing:2px;font-weight:700;color:${goldLight};text-transform:uppercase;">You're on the list</p>
+    <p style="margin:30px 0 8px 0;font-family:${sans};font-size:12px;letter-spacing:2px;font-weight:700;color:${goldLight};text-transform:uppercase;">Welcome to SPOTY</p>
     <h1 style="margin:0;font-family:${sans};font-size:34px;line-height:40px;font-weight:800;color:#FFFFFF;">Sell me this <s style="color:#8FA0B8;text-decoration-color:${gold};">pen</s> <span style="color:${goldLight};">vote.</span></h1>
     <p style="margin:14px 0 0 0;font-family:${sans};font-size:16px;line-height:24px;color:#DCE4EF;">Thanks for joining SPOTY, the global awards for salespeople. You'll be one of the first in when we open.</p>
   </td></tr>
@@ -98,7 +98,7 @@ function welcomeEmail(email) {
 </td></tr></table>
 </body></html>`;
 
-  const text = `You're on the list for SPOTY 2027
+  const text = `Welcome to SPOTY. You're on the list for 2027
 
 Sell me this pen vote.
 
