@@ -64,7 +64,7 @@ function welcomeEmail(email) {
     <h2 style="margin:0 0 18px 0;font-family:${serif};font-size:22px;font-weight:bold;color:${navy};">What happens next</h2>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
       ${step(1, 'We open the doors', "We'll email you the moment SPOTY launches, before anyone else.")}
-      ${step(2, 'Create your free profile', 'Your name, photo, country and where you sell. It takes two minutes.')}
+      ${step(2, 'Create your free profile', 'It takes two minutes. Every member gets the SPOTY member insignia and a personalised LinkedIn banner with their vote link, ready to post.')}
       ${step(3, 'Get your votes in', 'Share your link with the people who have seen you sell. Climb the global, national and age leaderboards.')}
     </table>
   </td></tr>
@@ -106,7 +106,7 @@ Thanks for joining SPOTY, the global awards for salespeople. You'll be one of th
 
 WHAT HAPPENS NEXT
 1. We open the doors: we'll email you the moment SPOTY launches.
-2. Create your free profile: name, photo, country and where you sell.
+2. Create your free profile: it takes two minutes. Every member gets the SPOTY member insignia and a personalised LinkedIn banner with their vote link.
 3. Get your votes in: share your link with the people who have seen you sell.
 
 WHAT YOU COULD WIN
