@@ -64,7 +64,7 @@ function welcomeEmail(email) {
     <h2 style="margin:0 0 18px 0;font-family:${serif};font-size:22px;font-weight:bold;color:${navy};">What happens next</h2>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
       ${step(1, 'We open the doors', "We'll email you the moment SPOTY launches, before anyone else.")}
-      ${step(2, 'Create your free profile', 'It takes two minutes. Every member gets the SPOTY member insignia and a personalised LinkedIn banner with their vote link, ready to post.')}
+      ${step(2, 'Create your free profile', 'It takes two minutes. At launch, every member gets the SPOTY member insignia and a personalised LinkedIn banner with their vote link.')}
       ${step(3, 'Get your votes in', 'Share your link with the people who have seen you sell. Climb the global, national and age leaderboards.')}
     </table>
   </td></tr>
@@ -82,8 +82,15 @@ function welcomeEmail(email) {
 
   <tr><td style="padding:24px 36px 32px 36px;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FBF6E8;border:1px solid #EBD9A6;border-radius:10px;"><tr><td style="padding:20px 22px;font-family:${sans};font-size:15px;line-height:22px;color:${ink};">
-      <b>Know a great salesperson?</b> Send them to spoty.club so they can compete too.
-      <div style="margin-top:14px;"><a href="${SITE}" style="display:inline-block;background:${gold};color:${navy};font-family:${sans};font-size:15px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px;">Visit spoty.club</a></div>
+      <h2 style="margin:0 0 6px 0;font-family:${serif};font-size:22px;font-weight:bold;color:${navy};">Tell your network you're in</h2>
+      Let people know you're going for Sales Person of the Year. Here's a LinkedIn banner and a post image, ready to use.
+      <a href="${SITE}/assets/share/spoty-post.png"><img src="${SITE}/assets/share/spoty-post.png" width="240" alt="I'm going for Sales Person of the Year 2027. Sell me this vote. spoty.club" style="display:block;width:240px;max-width:100%;height:auto;border:0;border-radius:6px;margin:16px 0 4px 0;"></a>
+      <div style="margin-top:14px;">
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.spoty.club" style="display:inline-block;background:${gold};color:${navy};font-family:${sans};font-size:15px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px;margin:0 8px 8px 0;">Share on LinkedIn</a>
+        <a href="${SITE}/assets/share/spoty-linkedin-banner.png" style="display:inline-block;background:#FFFFFF;color:${navy};border:1px solid #D9C48A;font-family:${sans};font-size:15px;font-weight:700;text-decoration:none;padding:11px 20px;border-radius:999px;margin:0 8px 8px 0;">Get the banner</a>
+        <a href="${SITE}/assets/share/spoty-post.png" style="display:inline-block;background:#FFFFFF;color:${navy};border:1px solid #D9C48A;font-family:${sans};font-size:15px;font-weight:700;text-decoration:none;padding:11px 20px;border-radius:999px;margin:0 0 8px 0;">Get the post image</a>
+      </div>
+      <p style="margin:10px 0 0 0;font-size:14px;line-height:20px;color:${muted};">When SPOTY launches, every member gets their own <b style="color:${ink};">personalised LinkedIn banner</b> with their name and vote link. Know a great salesperson? Send them to spoty.club so they can compete too.</p>
     </td></tr></table>
   </td></tr>
 
@@ -106,7 +113,7 @@ Thanks for joining SPOTY, the global awards for salespeople. You'll be one of th
 
 WHAT HAPPENS NEXT
 1. We open the doors: we'll email you the moment SPOTY launches.
-2. Create your free profile: it takes two minutes. Every member gets the SPOTY member insignia and a personalised LinkedIn banner with their vote link.
+2. Create your free profile: it takes two minutes. At launch, every member gets the SPOTY member insignia and a personalised LinkedIn banner with their vote link.
 3. Get your votes in: share your link with the people who have seen you sell.
 
 WHAT YOU COULD WIN
@@ -116,6 +123,11 @@ WHAT YOU COULD WIN
 - Prime Closer: most votes for your age, worldwide (digital certificate)
 
 Voting closes at midnight (UK time) on 31 December 2027. Winners are revealed in January 2028.
+
+TELL YOUR NETWORK YOU'RE IN
+LinkedIn banner: https://www.spoty.club/assets/share/spoty-linkedin-banner.png
+Post image: https://www.spoty.club/assets/share/spoty-post.png
+When SPOTY launches, every member gets their own personalised LinkedIn banner with their name and vote link.
 
 Know a great salesperson? Send them to https://www.spoty.club so they can compete too.
 
