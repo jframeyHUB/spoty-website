@@ -1,10 +1,11 @@
 node_modules/
+.next/
 .vercel/
-.env
-.env.*
+.env*
+!.env.example
 *.zip
-.DS_Store
-Thumbs.db
 .claude/
 spoty-logo-files/
 .preview/
+next-env.d.ts
+*.tsbuildinfo
